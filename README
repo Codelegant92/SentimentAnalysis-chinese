@@ -1,0 +1,21 @@
+本程序包一共包含9个文件：
+1. README.txt 即此文件，描述各文件的功能和程序使用方法。
+2. positive.txt 正面情感词典。
+3. negative.txt 负面情感词典。
+4. deny_adv.txt 否定副词词典。
+5. level_adv.txt 程度副词词典（一共有6类程度副词：“极其”，“很”，“较”，“稍稍”，“不足，稍欠”，“超”）。
+6. jd_BuildDict.py 有两个class, sentiDictionary类用于构造情感词典，featureDictionary类用于构造特征维度词典。
+                   设置了10个特征维度：quality(质量)，color(颜色)，material(材质)，style(风格)，function(功能)
+                                   package(包装)，price(价格)，service(服务)，logistic(物流)，description(图片与实物)
+                                   不涉及以上10类的在最后都归到others。
+                   对维度的修改可以直接在该部分修改。
+7. jd_SQL.py 连接SQL SERVER
+8. jd_SentiAnalysis.py 输入一段文本，计算该文本分别对应11个维度的词（在句中的位置以及词本身）和情感值。
+                       可以在该部分设置正面和负面情感的分值，否定词的分值，以及各类程度副词的权值。
+9. jd_MAIN.py 主函数，参数为ReviewID，即表Review中的ID。
+              包含三部分功能：（1）从Reviews表中读取ReviewID对应的ReviewContent。如果Reviews表中不存在该ID或者SentiValues
+                            表中已经有该ReviewID,则不用再继续操作。
+                           （2）计算从Reviews表中读取的ReviewContent的情感值。
+                           （3）将ReviewID, ReviewContent, 11大维度对应的内容和情感值， 以及ReviewScore写入数据库。
+              需要修改服务器 self.ms = MSSQL(host="localhost", user="sa", pwd="Robin_go1992", db="database_JdMASU")
+              计算综合情感值的时候，默认11类特征的权重均为1，但可以手动设置。

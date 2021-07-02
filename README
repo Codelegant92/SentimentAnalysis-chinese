@@ -20,5 +20,5 @@
                             表中已经有该ReviewID,则不用再继续操作。
                            （2）计算从Reviews表中读取的ReviewContent的情感值。
                            （3）将ReviewID, ReviewContent, 11大维度对应的内容和情感值， 以及ReviewScore写入数据库。
-              需要修改服务器 self.ms = MSSQL(host="localhost", user="sa", pwd="Robin_go1992", db="database_JdMASU")
+              需要修改服务器 self.ms = MSSQL(host="localhost", user="sa", pwd="****", db="****")
               计算综合情感值的时候，默认11类特征的权重均为1，但可以手动设置。
